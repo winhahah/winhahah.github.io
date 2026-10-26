@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>APK目录结构 - 卜天</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="卜天"><meta name="msapplication-TileImage" content="/img/favicon2.svg"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="卜天"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="分享技术,后续也可能有别的"><meta property="og:type" content="article"><meta property="og:title" content="卜天"><meta property="og:url" content="https://winhahah.github.io/2026/10/25/Android/002APK%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/"><meta property="og:site_name" content="卜天"><meta property="og:description" content="分享技术,后续也可能有别的"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://winhahah.github.io/img/og_image.png"><meta property="article:published_time" content="2026-10-25T16:00:00.000Z"><meta property="article:modified_time" content="2026-10-26T06:09:55.839Z"><meta property="article:author" content="纹云"><meta property="article:tag" content="Android"><meta property="article:tag" content="机制"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://winhahah.github.io/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://winhahah.github.io/2026/10/25/Android/002APK%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/"},"headline":"卜天","image":["https://winhahah.github.io/img/og_image.png"],"datePublished":"2026-10-25T16:00:00.000Z","dateModified":"2026-10-26T06:09:55.839Z","author":{"@type":"Person","name":"纹云"},"publisher":{"@type":"Organization","name":"卜天","logo":{"@type":"ImageObject","url":"https://winhahah.github.io/img/butian.svg"}},"description":"静态博客"}</script><link rel="canonical" href="https://winhahah.github.io/2026/10/25/Android/002APK%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/"><link rel="icon" href="/img/favicon2.svg"><link rel="preconnect" href="https://cdnjs.loli.net" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link data-pjax rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css"><link data-variant rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro&amp;display=swap"><link data-variant rel="stylesheet" href="/css/default.css"><script>if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    document.documentElement.classList.add('is-animating');
+}</script><style>html.is-animating body>.footer,html.is-animating body>.navbar,html.is-animating body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.loli.net/ajax/libs/pace/1.2.4/pace.min.js"></script><!--!--><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          let hash = location.hash.substring(1);
+          try {
+            // Non-ASCII IDs are percent-encoded in the URL
+            hash = decodeURIComponent(hash);
+          } catch (e) {}
+          const id = '#' + CSS.escape(hash);
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      // The script is in <head>, so wait for the tabs to switch to the tab in the URL
+      if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', switchTab);
+      } else {
+          switchTab();
+      }
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/butian.svg" alt="卜天" height="28"></a></div><div class="navbar-menu"><button class="navbar-item navbar-toggle" type="button" title="菜单" aria-label="菜单" aria-expanded="false" aria-controls="navbar-main-menu"><i class="fas fa-bars" aria-hidden="true"></i></button><div class="navbar-start" id="navbar-main-menu"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/winhahah" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a><button class="navbar-item search" type="button" title="搜索" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></button></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2026-10-25T16:00:00.000Z" title="2026-10-26 00:00:00">2026-10-26</time>发表</span><span class="level-item"><time dateTime="2026-10-26T06:09:55.839Z" title="2026-10-26 14:09:55">2026-10-26</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android/">Android</a></span><span class="level-item">9 分钟读完 (大约1312个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">APK目录结构</h1><div class="content"><p>apk目录结构介绍</p>
+<span id="more"></span>
+
+<h1 id="APK"><a href="#APK" class="headerlink" title="APK"></a>APK</h1><p>apk本质上是一个压缩包，将后缀改成zip可以直接用解压软件打开。</p>
+<p>这里对腾讯的应用宝进行分析</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages|grep tencent</span><br><span class="line">adb shell pm path com.tencent.android.qqdownloader</span><br><span class="line">adb pull /data/app/~~5gelR1bNtbsD-kN4pzX4Jw==/com.tencent.android.qqdownloader-hzh4Zx7t09B6v2XhbDIUzQ==/base.apk D:\data\code\APK</span><br></pre></td></tr></table></figure>
+<p>将apk拉去到本地以后，改后缀为zip解压打开（注意，解压缩打开都是乱码，只有反编译才能看到除了assets文件夹外的内容），文件目录和功能如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">assets/                 # 应用自带原始资源（不参与 aapt 资源 ID 编译）</span><br><span class="line">lib/                    # 原生动态库（.so，按 ABI 分目录）</span><br><span class="line">META-INF/               # APK 签名相关元数据</span><br><span class="line">okhttp3/                # OkHttp 相关配置/资源（依赖库带出来的）</span><br><span class="line">res/                    # Android 资源目录（布局/drawable/字符串等）</span><br><span class="line">AndroidManifest.xml     # 应用清单（包名、权限、组件、SDK版本等）</span><br><span class="line">classes.dex             # 主 Dex（Dalvik/ART 可执行字节码）</span><br><span class="line">classes2.dex ...        # 多 Dex 拆分（方法数超 65536 后分包）</span><br><span class="line">jacoco-agent.properties # JaCoCo 代码覆盖率代理配置（调试/测试打包残留），不理解为啥存在在这里</span><br><span class="line">resources.arsc          # 编译后的资源索引表（资源 ID-&gt;具体值/路径）</span><br></pre></td></tr></table></figure>
+
+<p>通俗理解如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AndroidManifest.xml   -&gt; 告诉系统“我是谁、要什么、有哪些组件”</span><br><span class="line">classes*.dex          -&gt; 执行逻辑</span><br><span class="line">res/ + resources.arsc -&gt; 界面/字符串/图片等资源解析</span><br><span class="line">assets/               -&gt; 原样资源</span><br><span class="line">lib/                  -&gt; native .so</span><br><span class="line">META-INF/             -&gt; 签名校验</span><br></pre></td></tr></table></figure>
+
+<p>详细介绍下</p>
+<ol>
+<li>assets&#x2F;<ul>
+<li>应用打包时原样放入的“原始文件”</li>
+<li>不会生成 <code>R.id/...</code> 资源 ID</li>
+<li>运行时通过 <code>AssetManager</code> &#x2F; <code>getAssets().open(&quot;xxx&quot;)</code> 读取</li>
+<li>常见内容：<ul>
+<li>配置文件、JSON、离线地图、模型文件、字体、网页资源、加密密钥&#x2F;脚本等</li>
+</ul>
+</li>
+<li>与 <code>res/</code> 区别：<code>res</code> 会被 aapt2 编译并分配资源 ID，<code>assets</code> 保持原样</li>
+</ul>
+</li>
+<li>lib&#x2F;<ul>
+<li><p>存放 <strong>Native 动态链接库 <code>.so</code></strong></p>
+</li>
+<li><p>通常按 CPU 架构分子目录，例如：</p>
+  <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lib/armeabi-v7a/</span><br><span class="line">lib/arm64-v8a/</span><br><span class="line">lib/x86/</span><br><span class="line">lib/x86_64/</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过 JNI 调用，比如音视频、加解密、网络加速、安全校验、游戏引擎等</p>
+</li>
+<li><p>运行时会由系统按设备 ABI 选择加载。ABI简单理解是，系统的驱动版本和底层架构。</p>
+</li>
+<li><p>也是包体积“大头”之一</p>
+</li>
+</ul>
+</li>
+<li>META-INF&#x2F;<ul>
+<li>APK <strong>签名信息</strong>所在目录（APK 必须签名才能安装）</li>
+<li>常见文件：<ul>
+<li><code>MANIFEST.MF</code>：各文件摘要（SHA&#x2F;SHA256）</li>
+<li><code>CERT.SF</code>：对 MANIFEST 的签名相关文件</li>
+<li><code>CERT.RSA</code> &#x2F; <code>CERT.DSA</code>：签名证书&#x2F;公钥信息</li>
+</ul>
+</li>
+<li>用于：<ul>
+<li>安装校验完整性</li>
+<li>校验是否篡改</li>
+<li>判断“是否同签名”（覆盖安装、系统权限、共享 UID 等）</li>
+</ul>
+</li>
+<li>重打包&#x2F;改文件后签名会变，需重新签名</li>
+</ul>
+</li>
+<li>okhttp3&#x2F;<ul>
+<li>不是 Android 强制标准目录，通常是 **OkHttp（Square&#x2F;Android 常用网络库）**​ 打包带出的资源&#x2F;配置</li>
+<li>可能包含：<ul>
+<li>内置证书&#x2F;配置</li>
+<li>网络拦截器相关资源</li>
+<li>Kotlin&#x2F;Java 库资源（有些库会往根目录放东西）</li>
+</ul>
+</li>
+<li>说明该 App 使用 OkHttp 做 HTTP&#x2F;HTTPS 请求（很常见）</li>
+</ul>
+</li>
+<li>res&#x2F;<ul>
+<li>Android 标准资源目录</li>
+<li>会被编译进资源表，通过 <code>R.xxx.xxx</code> 或 <code>Resources.getXXX()</code> 访问</li>
+<li>常见子目录：</li>
+</ul>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">res/layout/        # XML 布局</span><br><span class="line">res/drawable/      # 图片/矢量/选择器</span><br><span class="line">res/mipmap/        # 启动图标（按密度）</span><br><span class="line">res/values/        # strings/colors/dimens/styles/arrays</span><br><span class="line">res/anim/          # 动画</span><br><span class="line">res/raw/           # 类似 assets 但会进资源表</span><br><span class="line">res/xml/           # 配置类 XML</span><br></pre></td></tr></table></figure>
+<p> 不同后缀（如 <code>-hdpi/-xhdpi/-xxhdpi/-zh-rCN</code>）表示适配不同屏幕&#x2F;语言</p>
+</li>
+<li>AndroidManifest.xml<ul>
+<li><strong>应用清单文件</strong>（核心）</li>
+<li>包含：<ul>
+<li>包名（如 <code>package=&quot;com.tencent.android.qqdownloader&quot;</code>）</li>
+<li><code>application</code> 节点（入口、主题、允许备份、硬件加速等）</li>
+<li>四大组件：<ul>
+<li><code>activity</code></li>
+<li><code>service</code></li>
+<li><code>receiver</code></li>
+<li><code>provider</code></li>
+</ul>
+</li>
+<li>权限声明：<ul>
+<li><code>uses-permission</code>（要什么权限）</li>
+<li><code>uses-feature</code>（需要相机&#x2F;定位等特性）</li>
+</ul>
+</li>
+<li>SDK 版本：<ul>
+<li><code>minSdkVersion</code></li>
+<li><code>targetSdkVersion</code></li>
+<li><code>compileSdkVersion</code>（有时在构建信息里）</li>
+</ul>
+</li>
+<li>安装位置、支持屏幕等</li>
+</ul>
+</li>
+<li>注意：APK 里通常是 <strong>二进制 XML（AXML）</strong>，不是直接可读文本；你这里显示用 Edge 打开，可能是反编译工具已转成文本&#x2F;或你用工具查看</li>
+</ul>
+</li>
+<li>classes.dex</li>
+<li>classes2.dex &#x2F; classes3.dex &#x2F; classes4.dex &#x2F; classes5.dex<ul>
+<li><code>.dex</code> &#x3D; <strong>Dalvik&#x2F;ART 可执行字节码文件</strong></li>
+<li>由 Java&#x2F;Kotlin 源码经 <code>javac → d8/r8/dx</code> 转换而来</li>
+<li>App 逻辑基本都在这里：<ul>
+<li>页面逻辑</li>
+<li>网络请求</li>
+<li>业务规则</li>
+<li>加解密</li>
+<li>插件&#x2F;下载逻辑等</li>
+</ul>
+</li>
+<li>为什么有多个 dex：<ul>
+<li>Android 单个 Dex 方法引用上限 <strong>65536（64K）</strong></li>
+<li>超过就开启 <strong>Multidex</strong>，拆成 <code>classes.dex</code>、<code>classes2.dex</code>…</li>
+<li>大厂&#x2F;大型 App（如应用宝）很常见</li>
+</ul>
+</li>
+<li>分析工具：<ul>
+<li><code>jadx</code>（反编译成 Java&#x2F;Kotlin 近似代码）</li>
+<li><code>apktool</code>（反编译&#x2F;回编译资源与 smali）</li>
+<li><code>smali/baksmali</code>（看&#x2F;改底层字节码）</li>
+<li>Android Studio &#x2F; jd-gui 等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>jacoco-agent.properties<ul>
+<li>**JaCoCo（Java Code Coverage）**​ 代码覆盖率工具相关配置</li>
+<li>用于测试时统计“哪些代码被执行过”</li>
+<li>正常发布版一般不该带，常见是：<ul>
+<li>测试包&#x2F;内部构建</li>
+<li>开启覆盖率采集</li>
+<li>反编译&#x2F;解包看到残留</li>
+</ul>
+</li>
+<li>可能配置：<ul>
+<li>agent 输出路径</li>
+<li>包含&#x2F;排除类规则</li>
+<li>覆盖率 dump 方式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>resources.arsc<ul>
+<li><strong>编译后的资源索引表（二进制资源表）</strong></li>
+<li>作用：把代码里的资源 ID（如 <code>0x7f0...</code>）映射到：<ul>
+<li>字符串值</li>
+<li>布局&#x2F;图片路径</li>
+<li>主题&#x2F;样式</li>
+<li>多语言&#x2F;多密度对应资源</li>
+</ul>
+</li>
+<li>由 <code>aapt/aapt2</code> 生成</li>
+<li>改资源后通常要重新生成&#x2F;通过 <code>apktool</code> 处理</li>
+<li>与 <code>res/</code> 配合理解：<br>  <code>res/</code> 是“资源源文件&#x2F;编译后片段”，<code>resources.arsc</code> 是“查表索引”</li>
+</ul>
+</li>
+</ol>
+</div><div class="article-licensing box"><div class="licensing-title"><p>APK目录结构</p><p><a href="https://winhahah.github.io/2026/10/25/Android/002APK目录结构/">https://winhahah.github.io/2026/10/25/Android/002APK目录结构/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>纹云</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2026-10-26</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2026-10-26</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Android/">Android</a><a class="link-muted mr-2" rel="tag" href="/tags/%E6%9C%BA%E5%88%B6/">机制</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2026/10/26/Android/004%E5%AE%89%E5%8D%93%E5%B8%B8%E7%94%A8%E7%9B%AE%E5%BD%95/"><i class="level-item fas fa-chevron-left" aria-hidden="true"></i><span class="level-item">安卓常用目录介绍</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2026/10/25/Android/001adb%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E4%BD%BF%E7%94%A8/"><span class="level-item">adb的介绍与使用</span><i class="level-item fas fa-chevron-right" aria-hidden="true"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/lulu.png" alt="纹云"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">纹云</p><p class="is-size-6 is-block">天灵地灵我灵</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>地球</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">9</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">7</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/winhahah" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="GitHub" href="https://github.com/winhahah" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android/"><span class="level-start"><span class="level-item">Android</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/Android/%E5%B7%A5%E5%85%B7/"><span class="level-start"><span class="level-item">工具</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E5%85%B6%E4%BB%96/"><span class="level-start"><span class="level-item">其他</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E5%85%B6%E4%BB%96/%E5%B7%A5%E5%85%B7/"><span class="level-start"><span class="level-item">工具</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E6%B5%8B%E8%AF%95/"><span class="level-start"><span class="level-item">测试</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E6%B5%8B%E8%AF%95/%E4%BA%8C%E7%BA%A7/"><span class="level-start"><span class="level-item">二级</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2026-10-26T05:15:00.000Z">2026-10-26</time></p><p class="title"><a href="/2026/10/26/Android/007frida%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">frida的安装与配置</a></p><p class="categories"><a href="/categories/Android/">Android</a> / <a href="/categories/Android/%E5%B7%A5%E5%85%B7/">工具</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2026-10-26T01:30:00.000Z">2026-10-26</time></p><p class="title"><a href="/2026/10/26/Android/006%E5%AE%89%E5%8D%93%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%8002/">安卓项目基础02</a></p><p class="categories"><a href="/categories/Android/">Android</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2026-10-26T01:20:00.000Z">2026-10-26</time></p><p class="title"><a href="/2026/10/26/Android/005%E5%AE%89%E5%8D%93%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%8001/">安卓项目基础01</a></p><p class="categories"><a href="/categories/Android/">Android</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2026-10-26T01:00:00.000Z">2026-10-26</time></p><p class="title"><a href="/2026/10/26/Android/004%E5%AE%89%E5%8D%93%E5%B8%B8%E7%94%A8%E7%9B%AE%E5%BD%95/">安卓常用目录介绍</a></p><p class="categories"><a href="/categories/Android/">Android</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2026-10-25T16:00:00.000Z">2026-10-26</time></p><p class="title"><a href="/2026/10/25/Android/002APK%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/">APK目录结构</a></p><p class="categories"><a href="/categories/Android/">Android</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/10/"><span class="level-start"><span class="level-item">十月 2026</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AndroidStudio/"><span class="tag">AndroidStudio</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/adb/"><span class="tag">adb</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/frida/"><span class="tag">frida</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B7%A5%E5%85%B7/"><span class="tag">工具</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%BA%E5%88%B6/"><span class="tag">机制</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%A7%81%E6%9C%89%E6%96%87%E7%AB%A0/"><span class="tag">私有文章</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/butian.svg" alt="卜天" height="28"></a><p class="is-size-7"><span>&copy; 2026 纹云</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2026 纹云</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="CC-BY 4.0" href="https://creativecommons.org/licenses/by/4.0/" aria-label="CC-BY 4.0"><i class="fab fa-creative-commons-by" aria-hidden="true"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" defer></script><script>var IcarusThemeSettings = {"article":{"highlight":{"clipboard":true,"fold":"unfolded","fold_preview":0}},"i18n":{"copy":"复制","copied":"已复制！"}};</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js" onerror="document.documentElement.classList.remove(&#039;is-animating&#039;)"></script><button type="button" id="back-to-top" title="回到顶端" aria-label="回到顶端"><i class="fas fa-chevron-up" aria-hidden="true"></i></button><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/js/lightgallery-all.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
