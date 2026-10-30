@@ -4,9 +4,43 @@
  */
 // eslint-disable-next-line no-unused-vars
 function loadInsight(config, translation) {
+  const search = window.searchInsight;
   const $main = $('.searchbox');
-  const $input = $main.find('.searchbox-input');
-  const $container = $main.find('.searchbox-body');
+  let $input, $container;
+  const controller = window.loadSearchbox($main, {
+    touch: true,
+    onDestroy: () => {
+      $(document).off('.insightSearch');
+      $input.off('.insightSearch');
+    },
+    onKeyDown: (e) => {
+      switch (e.keyCode) {
+        case 38: // UP
+          selectItemByDiff(-1);
+          break;
+        case 40: // DOWN
+          selectItemByDiff(1);
+          break;
+        case 13: // ENTER
+          gotoLink($container.find('.searchbox-result-item.active').eq(0));
+          break;
+      }
+    },
+  });
+
+  // Replacing the controller disposes the previous engine, which may remove its input widget.
+  // Both search views keep this header container; Insight owns a plain text input inside it.
+  $input = $main.find('.searchbox-input');
+  if (!$input.length) {
+    $input = $('<input>').attr({
+      type: 'text',
+      class: 'searchbox-input',
+      placeholder: translation.hint,
+    });
+    $main.find('.searchbox-header .searchbox-input-container').first().append($input);
+  }
+  $container = $main.find('.searchbox-body');
+  if ($main.hasClass('show')) $input.focus();
 
   function section(title) {
     return $('<section>').addClass('searchbox-result-section').append($('<header>').text(title));
@@ -145,136 +179,10 @@ function loadInsight(config, translation) {
     return section(sectionTitle).append($searchItems);
   }
 
-  function parseKeywords(keywords) {
-    return keywords
-      .split(' ')
-      .filter((keyword) => {
-        return !!keyword;
-      })
-      .map((keyword) => {
-        return keyword.toLowerCase();
-      });
-  }
-
-  /**
-   * Judge if a given post/page/category/tag contains all of the keywords.
-   * @param Object            obj     Object to be weighted
-   * @param Array<String>     fields  Object's fields to find matches
-   */
-  function filter(keywords, obj, fields) {
-    const keywordArray = parseKeywords(keywords);
-    const containKeywords = keywordArray.filter((keyword) => {
-      const containFields = fields.filter((field) => {
-        if (!Object.prototype.hasOwnProperty.call(obj, field)) {
-          return false;
-        }
-        if (obj[field].toLowerCase().indexOf(keyword) > -1) {
-          return true;
-        }
-        return false;
-      });
-      if (containFields.length > 0) {
-        return true;
-      }
-      return false;
-    });
-    return containKeywords.length === keywordArray.length;
-  }
-
-  function filterFactory(keywords) {
-    return {
-      post: function (obj) {
-        return filter(keywords, obj, ['title', 'text']);
-      },
-      page: function (obj) {
-        return filter(keywords, obj, ['title', 'text']);
-      },
-      category: function (obj) {
-        return filter(keywords, obj, ['name', 'slug']);
-      },
-      tag: function (obj) {
-        return filter(keywords, obj, ['name', 'slug']);
-      },
-    };
-  }
-
-  /**
-   * Calculate the weight of a matched post/page/category/tag.
-   * @param Object            obj     Object to be weighted
-   * @param Array<String>     fields  Object's fields to find matches
-   * @param Array<Integer>    weights Weight of every field
-   */
-  function weight(keywords, obj, fields, weights) {
-    let value = 0;
-    parseKeywords(keywords).forEach((keyword) => {
-      fields.forEach((field, index) => {
-        if (Object.prototype.hasOwnProperty.call(obj, field)) {
-          value += countMatches(obj[field].toLowerCase(), keyword) * weights[index];
-        }
-      });
-    });
-    return value;
-  }
-
-  // Count the occurrences of a lowercase keyword, which is plain text, not a regular expression
-  function countMatches(text, keyword) {
-    let count = 0;
-    for (let i = text.indexOf(keyword); i !== -1; i = text.indexOf(keyword, i + keyword.length)) {
-      count++;
-    }
-    return count;
-  }
-
-  function weightFactory(keywords) {
-    return {
-      post: function (obj) {
-        return weight(keywords, obj, ['title', 'text'], [3, 1]);
-      },
-      page: function (obj) {
-        return weight(keywords, obj, ['title', 'text'], [3, 1]);
-      },
-      category: function (obj) {
-        return weight(keywords, obj, ['name', 'slug'], [1, 1]);
-      },
-      tag: function (obj) {
-        return weight(keywords, obj, ['name', 'slug'], [1, 1]);
-      },
-    };
-  }
-
-  // Weigh each matching item once, instead of in every comparison of the sort
-  function topItems(items, filter, weigh) {
-    return items
-      .filter(filter)
-      .map((item) => {
-        return { item, weight: weigh(item) };
-      })
-      .sort((a, b) => {
-        return b.weight - a.weight;
-      })
-      .slice(0, 5)
-      .map((result) => {
-        return result.item;
-      });
-  }
-
-  function search(json, keywords) {
-    const weights = weightFactory(keywords);
-    const filters = filterFactory(keywords);
-    return {
-      posts: topItems(json.posts, filters.post, weights.post),
-      pages: topItems(json.pages, filters.page, weights.page),
-      categories: topItems(json.categories, filters.category, weights.category),
-      tags: topItems(json.tags, filters.tag, weights.tag),
-    };
-  }
-
   function searchResultToDOM(keywords, searchResult) {
     $container.empty();
     for (const key in searchResult) {
-      $container.append(
-        sectionFactory(parseKeywords(keywords), key.toUpperCase(), searchResult[key]),
-      );
+      $container.append(sectionFactory(keywords, key.toUpperCase(), searchResult[key]));
     }
   }
 
@@ -305,39 +213,6 @@ function loadInsight(config, translation) {
     scrollTo($($items[nextPosition]));
   }
 
-  let opener = null;
-
-  function open() {
-    if (!$main.hasClass('show')) {
-      opener = document.activeElement;
-      $main.addClass('show');
-    }
-    $input.focus();
-  }
-
-  // Return the focus to the element that opened the search box, unless it moved elsewhere
-  function close(restoreFocus = true) {
-    $main.removeClass('show');
-    if (restoreFocus && opener && document.contains(opener)) {
-      opener.focus();
-    }
-    opener = null;
-  }
-
-  // Open the search box with "/" (unless typing in a field) or Ctrl/Cmd+K
-  function isSearchShortcut(e) {
-    if (e.altKey) {
-      return false;
-    }
-    if (e.ctrlKey || e.metaKey) {
-      return !e.shiftKey && typeof e.key === 'string' && e.key.toLowerCase() === 'k';
-    }
-    // e.key is "/" whatever keys type it on the keyboard layout, so do not check e.shiftKey
-    const target = e.target;
-    const typing = target.isContentEditable || /^(input|textarea|select)$/i.test(target.tagName);
-    return e.key === '/' && !typing;
-  }
-
   function gotoLink($item) {
     if ($item && $item.length) {
       location.href = $item.attr('href');
@@ -345,69 +220,31 @@ function loadInsight(config, translation) {
   }
 
   $.getJSON(config.contentUrl, (json) => {
+    if (!controller.isCurrent()) return;
     if (location.hash.trim() === '#insight-search') {
       $main.addClass('show');
     }
-    $input.on('input', function () {
-      const keywords = $(this).val();
-      searchResultToDOM(keywords, search(json, keywords));
+    $input.on('input.insightSearch', function () {
+      const result = search(json, $(this).val());
+      searchResultToDOM(result.keywords, result.results);
     });
     $input.trigger('input');
   });
 
   let touch = false;
   $(document)
-    .on('click', '.navbar-main .search', open)
-    .on('click touchend', '.searchbox-result-item', function (e) {
+    .on('click.insightSearch touchend.insightSearch', '.searchbox-result-item', function (e) {
+      if (!controller.isCurrent()) return;
       if (e.type !== 'click' && !touch) {
         return;
       }
       gotoLink($(this));
       touch = false;
     })
-    .on('click touchend', '.searchbox-close', (e) => {
-      if (e.type !== 'click' && !touch) {
-        return;
-      }
-      $('.navbar-main').css('pointer-events', 'none');
-      setTimeout(() => {
-        $('.navbar-main').css('pointer-events', 'auto');
-      }, 400);
-      close();
-      touch = false;
-    })
-    .on('focusin', (e) => {
-      // Close the search box when the focus moves to the rest of the page, e.g., by Tab
-      if ($main.hasClass('show') && !$main[0].contains(e.target)) {
-        close(false);
-      }
-    })
-    .on('keydown', (e) => {
-      if (isSearchShortcut(e)) {
-        e.preventDefault();
-        open();
-        return;
-      }
-      if (!$main.hasClass('show')) return;
-      switch (e.keyCode) {
-        case 27: // ESC
-          close();
-          break;
-        case 38: // UP
-          selectItemByDiff(-1);
-          break;
-        case 40: // DOWN
-          selectItemByDiff(1);
-          break;
-        case 13: // ENTER
-          gotoLink($container.find('.searchbox-result-item.active').eq(0));
-          break;
-      }
-    })
-    .on('touchstart', (e) => {
+    .on('touchstart.insightSearch', () => {
       touch = true;
     })
-    .on('touchmove', (e) => {
+    .on('touchmove.insightSearch', () => {
       touch = false;
     });
 }

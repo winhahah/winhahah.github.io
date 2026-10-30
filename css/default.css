@@ -11334,6 +11334,12 @@ footer.footer .level-end .field {
   top: calc(1.5 * 0.85rem / 2 + 0.75rem / 2);
 }
 .searchbox {
+  --search-result-text: #4a4a4a;
+  --search-result-muted: #7a7a7a;
+  --search-result-link: #3273dc;
+  --search-result-border: #dbdbdb;
+  --search-result-surface: #fff;
+  --search-result-hover: #fff;
   display: none;
   top: 0;
   left: 0;
@@ -11393,15 +11399,19 @@ footer.footer .level-end .field {
 .searchbox .searchbox-input-container {
   display: flex;
   flex-grow: 1;
+  min-width: 0;
 }
 .searchbox .searchbox-input {
   flex-grow: 1;
+  min-width: 0;
+  width: 100%;
   color: inherit;
   box-sizing: border-box;
   padding: 0.75em 0 0.75em 1.25em;
   background: #fff;
 }
 .searchbox .searchbox-close {
+  flex-shrink: 0;
   display: inline-block;
   font-size: 1.5em;
   padding: 0.5em 0.75em;
@@ -11499,6 +11509,223 @@ footer.footer .level-end .field {
 }
 .searchbox .searchbox-pagination .searchbox-pagination-item:not(.active):not(.disabled) .searchbox-pagination-link:hover {
   background-color: #f5f5f5;
+}
+.searchbox-google .searchbox-container {
+  width: 640px;
+  max-width: 100%;
+}
+.searchbox-google .searchbox-input-container {
+  align-items: center;
+  min-width: 0;
+}
+.searchbox-google .searchbox-input-container > .icon {
+  flex: none;
+  margin-left: 1.25rem;
+  color: var(--search-result-muted);
+}
+.searchbox-google .searchbox-input {
+  min-width: 0;
+  padding-left: 0.65rem;
+}
+.searchbox-google .searchbox-body {
+  background: var(--search-result-surface);
+}
+.searchbox-google .searchbox-body .gsc-control-cse * {
+  font-family: inherit;
+}
+.searchbox-google .searchbox-body .gsc-results-wrapper-overlay {
+  position: static !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+  overflow: visible;
+}
+.searchbox-google .searchbox-body .gsc-modal-background-image,
+.searchbox-google .searchbox-body .gsc-results-close-btn {
+  display: none;
+}
+.searchbox-google .searchbox-body .gsc-control-cse,
+.searchbox-google .searchbox-body .gsc-webResult.gsc-result,
+.searchbox-google .searchbox-body .gsc-results .gsc-imageResult {
+  background: transparent;
+  border: 0;
+}
+.searchbox-google .searchbox-body .gsc-control-cse {
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  color: var(--search-result-text);
+}
+.searchbox-google .searchbox-body .gsc-control-cse,
+.searchbox-google .searchbox-body .gsc-control-cse .gsc-table-result {
+  font-size: 1rem;
+}
+.searchbox-google .searchbox-body .gsc-results {
+  width: 100%;
+}
+.searchbox-google .searchbox-body .gsc-wrapper,
+.searchbox-google .searchbox-body .gsc-resultsbox-visible,
+.searchbox-google .searchbox-body .gsc-resultsRoot {
+  width: 100%;
+}
+.searchbox-google .searchbox-body .gsc-wrapper,
+.searchbox-google .searchbox-body .gsc-above-wrapper-area {
+  max-width: none;
+}
+.searchbox-google .searchbox-body .gsc-webResult.gsc-result {
+  margin: 0;
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid var(--search-result-border);
+}
+.searchbox-google .searchbox-body .gsc-webResult.gsc-result:hover {
+  background: var(--search-result-hover);
+}
+.searchbox-google .searchbox-body .gsc-thumbnail-inside,
+.searchbox-google .searchbox-body .gsc-url-top {
+  padding: 0;
+}
+.searchbox-google .searchbox-body .gsc-table-result {
+  padding: 0;
+  margin-top: 0.35rem;
+}
+.searchbox-google .searchbox-body .gs-webResult.gs-result {
+  display: flow-root;
+}
+.searchbox-google .searchbox-body .gs-webResult.gs-result > .gsc-thumbnail {
+  float: right;
+  width: 64px;
+  margin: 0 0 0.5rem 1rem;
+  padding: 0;
+}
+.searchbox-google .searchbox-body .gs-web-image-box {
+  width: 64px;
+  margin: 0;
+  padding: 0;
+}
+.searchbox-google .searchbox-body .gs-web-image-box .gs-image {
+  max-width: 64px;
+  max-height: 64px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.searchbox-google .searchbox-body .gsc-table-cell-snippet-close {
+  padding: 0;
+}
+.searchbox-google .searchbox-body .gsc-result .gs-title {
+  height: auto;
+  overflow: visible;
+}
+.searchbox-google .searchbox-body .gsc-result .gs-title,
+.searchbox-google .searchbox-body .gsc-result .gs-title *,
+.searchbox-google .searchbox-body .gsc-result a.gs-title:link,
+.searchbox-google .searchbox-body .gsc-result a.gs-title:visited {
+  color: var(--search-result-link);
+  font-family: inherit;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.searchbox-google .searchbox-body .gsc-result a.gs-title:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.searchbox-google .searchbox-body a:focus-visible,
+.searchbox-google .searchbox-body [tabindex]:focus-visible {
+  outline: 2px solid var(--search-result-link);
+  outline-offset: 3px;
+}
+.searchbox-google .searchbox-body .gsc-result .gs-snippet {
+  color: var(--search-result-muted);
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.searchbox-google .searchbox-body .gsc-result .gs-snippet b {
+  color: var(--search-result-text);
+  font-weight: 500;
+}
+.searchbox-google .searchbox-body .gsc-result-info,
+.searchbox-google .searchbox-body .gsc-orderby-label,
+.searchbox-google .searchbox-body .gs-webResult div.gs-visibleUrl {
+  color: var(--search-result-muted);
+  font-family: inherit;
+  font-size: 0.8rem;
+}
+.searchbox-google .searchbox-body .gsc-above-wrapper-area {
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  padding: 0 0.5rem 0.5rem;
+}
+.searchbox-google .searchbox-body .gsc-above-wrapper-area-container {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+.searchbox-google .searchbox-body .gsc-above-wrapper-area-container td {
+  padding: 0;
+  border: 0;
+}
+.searchbox-google .searchbox-body .gsc-orderby-container {
+  width: 1%;
+  white-space: nowrap;
+}
+.searchbox-google .searchbox-body .gsc-orderby-container,
+.searchbox-google .searchbox-body .gsc-orderby {
+  text-align: right;
+}
+.searchbox-google .searchbox-body .gsc-option-menu-container {
+  text-align: left;
+}
+.searchbox-google .searchbox-body .gsc-result-info {
+  padding: 0.5rem 0;
+}
+.searchbox-google .searchbox-body .gsc-option-menu {
+  right: 0;
+  left: auto;
+  color: var(--search-result-text);
+  background: var(--search-result-surface);
+  border: 1px solid var(--search-result-border);
+  border-radius: 4px;
+}
+.searchbox-google .searchbox-body .gsc-option-menu-item:hover {
+  background: var(--search-result-hover);
+}
+.searchbox-google .searchbox-body .gcsc-find-more-on-google {
+  color: var(--search-result-link);
+}
+.searchbox-google .searchbox-body .gcsc-find-more-on-google-magnifier {
+  fill: currentColor;
+}
+.searchbox-google .searchbox-body .gsc-results .gsc-cursor-box {
+  margin: 1rem 0;
+  text-align: center;
+}
+.searchbox-google .searchbox-body .gsc-results .gsc-cursor-box .gsc-cursor-page {
+  display: inline-block;
+  min-width: 2rem;
+  margin: 0 0.2rem;
+  padding: 0.45rem 0.65rem;
+  color: var(--search-result-link);
+  background: transparent;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.searchbox-google .searchbox-body .gsc-results .gsc-cursor-box .gsc-cursor-page:not(.gsc-cursor-current-page):hover {
+  background: var(--search-result-hover);
+}
+.searchbox-google .searchbox-body .gsc-results .gsc-cursor-box .gsc-cursor-current-page {
+  font-weight: bold;
+  color: var(--search-result-surface);
+  background: var(--search-result-link);
 }
 @media screen and (max-width: 559px), screen and (max-height: 479px) {
   .searchbox .searchbox-container {
@@ -11665,6 +11892,9 @@ figure.highlight.foldable div.level-left {
 .widget .tags .tag:last-child {
   background: $light-grey;
   color: $white-invert;
+}
+.github-calendar-chart {
+  --github-calendar-default-color: #3273dc;
 }
 .level.is-multiline {
   flex-wrap: wrap;
@@ -11847,7 +12077,7 @@ figure.highlight.foldable div.level-left {
   top: 0;
   right: 100%;
   width: 100%;
-  height: 2px;
+  height: 3px;
   z-index: 2000;
   position: fixed;
   background: #3273dc;
@@ -11895,7 +12125,7 @@ figure.highlight.foldable div.level-left {
 }
 .cc-window,
 .cc-revoke {
-  font-size: 1.1rem !important;
+  font-size: 15px !important;
   font-family: Ubuntu, Roboto, 'Open Sans', 'Microsoft YaHei', sans-serif !important;
 }
 .cc-window {
@@ -11935,6 +12165,28 @@ figure.highlight.foldable div.level-left {
 .cc-revoke:hover {
   text-decoration: none !important;
   background-color: #276cda;
+}
+.justified-gallery > a:hover > .jg-caption {
+  display: initial;
+  opacity: 0.7;
+}
+body .lg-container .lg-sub-html {
+  color: #fff;
+  background: transparent;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  font-family: Ubuntu, Roboto, 'Open Sans', 'Microsoft YaHei', sans-serif;
+  border-radius: 0;
+  overflow-wrap: anywhere;
+}
+body .lg-container .lg-icon:focus-visible {
+  outline: 3px solid #3273dc;
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lg-container .lg-item {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 @media screen and (min-width: 1280px) {
   .is-1-column .container,
@@ -11992,6 +12244,9 @@ figure.highlight.foldable div.level-left {
   html:where([data-appearance="auto"]) {
     color-scheme: dark;
     background-color: #17181c;
+  }
+  :where(html[data-appearance="auto"]) .github-calendar-chart {
+    --github-calendar-default-color: #6ea0f0;
   }
   :where(html[data-appearance="auto"]) body {
     color: #d4d6db;
@@ -12468,6 +12723,14 @@ figure.highlight.foldable div.level-left {
   :where(html[data-appearance="auto"]) .timeline .media:last-child:after {
     background: #1f2026;
   }
+  :where(html[data-appearance="auto"]) .searchbox {
+    --search-result-text: #d4d6db;
+    --search-result-muted: #a3a6ad;
+    --search-result-link: #6ea0f0;
+    --search-result-border: #30323a;
+    --search-result-surface: #1f2026;
+    --search-result-hover: #30323a;
+  }
   :where(html[data-appearance="auto"]) .searchbox .searchbox-container {
     background-color: #1f2026;
     box-shadow: 0 8px 24px rgba(0,0,0,0.45), 0 0 0 1px #30323a;
@@ -12545,6 +12808,9 @@ figure.highlight.foldable div.level-left {
 html:where([data-appearance="dark"]) {
   color-scheme: dark;
   background-color: #17181c;
+}
+:where(html[data-appearance="dark"]) .github-calendar-chart {
+  --github-calendar-default-color: #6ea0f0;
 }
 :where(html[data-appearance="dark"]) body {
   color: #d4d6db;
@@ -13021,6 +13287,14 @@ html:where([data-appearance="dark"]) {
 :where(html[data-appearance="dark"]) .timeline .media:last-child:after {
   background: #1f2026;
 }
+:where(html[data-appearance="dark"]) .searchbox {
+  --search-result-text: #d4d6db;
+  --search-result-muted: #a3a6ad;
+  --search-result-link: #6ea0f0;
+  --search-result-border: #30323a;
+  --search-result-surface: #1f2026;
+  --search-result-hover: #30323a;
+}
 :where(html[data-appearance="dark"]) .searchbox .searchbox-container {
   background-color: #1f2026;
   box-shadow: 0 8px 24px rgba(0,0,0,0.45), 0 0 0 1px #30323a;
@@ -13093,4 +13367,51 @@ html:where([data-appearance="dark"]) {
     background-color: #272930;
     box-shadow: 0 8px 24px rgba(0,0,0,0.45), 0 0 0 1px #30323a;
   }
+}
+@supports (animation-timeline: scroll()) {
+  body:has(.card-content.article h1.title)::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    height: 3px;
+    background: #3273dc;
+    transform-origin: 0 50%;
+    animation: default-reading-progress linear both;
+    animation-timeline: scroll(root);
+  }
+@-moz-keyframes default-reading-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+}
+@-webkit-keyframes default-reading-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+}
+@-o-keyframes default-reading-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+}
+@keyframes default-reading-progress {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+}
 }
