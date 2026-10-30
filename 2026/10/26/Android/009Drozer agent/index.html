@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Drozer agent - 卜天</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="卜天"><meta name="msapplication-TileImage" content="/img/favicon2.svg"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="卜天"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="分享技术,后续也可能有别的"><meta property="og:type" content="article"><meta property="og:title" content="卜天"><meta property="og:url" content="https://winhahah.github.io/2026/10/26/Android/009Drozer%20agent/"><meta property="og:site_name" content="卜天"><meta property="og:description" content="分享技术,后续也可能有别的"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://winhahah.github.io/img/og_image.png"><meta property="article:published_time" content="2026-10-26T07:15:00.000Z"><meta property="article:modified_time" content="2026-10-30T11:45:17.882Z"><meta property="article:author" content="纹云"><meta property="article:tag" content="工具"><meta property="article:tag" content="Android"><meta property="article:tag" content="AI"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://winhahah.github.io/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://winhahah.github.io/2026/10/26/Android/009Drozer%20agent/"},"headline":"卜天","image":["https://winhahah.github.io/img/og_image.png"],"datePublished":"2026-10-26T07:15:00.000Z","dateModified":"2026-10-30T11:45:17.882Z","author":{"@type":"Person","name":"纹云"},"publisher":{"@type":"Organization","name":"卜天","logo":{"@type":"ImageObject","url":"https://winhahah.github.io/img/butian.svg"}},"description":"静态博客"}</script><link rel="canonical" href="https://winhahah.github.io/2026/10/26/Android/009Drozer%20agent/"><link rel="icon" href="/img/favicon2.svg"><link rel="preconnect" href="https://cdnjs.loli.net" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/6.0.0/css/all.min.css"><link data-pjax rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/highlight.js/11.11.1/styles/atom-one-light.min.css"><link data-variant rel="stylesheet" href="https://fonts.loli.net/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro&amp;display=swap"><link data-variant rel="stylesheet" href="/css/default.css"><script>if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    document.documentElement.classList.add('is-animating');
+}</script><style>html.is-animating body>.footer,html.is-animating body>.navbar,html.is-animating body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdnjs.loli.net/ajax/libs/pace/1.2.4/pace.min.js"></script><!--!--><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          let hash = location.hash.substring(1);
+          try {
+            // Non-ASCII IDs are percent-encoded in the URL
+            hash = decodeURIComponent(hash);
+          } catch (e) {}
+          const id = '#' + CSS.escape(hash);
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      // The script is in <head>, so wait for the tabs to switch to the tab in the URL
+      if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', switchTab);
+      } else {
+          switchTab();
+      }
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/butian.svg" alt="卜天" height="28"></a></div><div class="navbar-menu"><button class="navbar-item navbar-toggle" type="button" title="菜单" aria-label="菜单" aria-expanded="false" aria-controls="navbar-main-menu"><i class="fas fa-bars" aria-hidden="true"></i></button><div class="navbar-start" id="navbar-main-menu"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/winhahah" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a><button class="navbar-item search" type="button" title="搜索" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></button></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2026-10-26T07:15:00.000Z" title="2026-10-26 15:15:00">2026-10-26</time>发表</span><span class="level-item"><time dateTime="2026-10-30T11:45:17.882Z" title="2026-10-30 19:45:17">2026-10-30</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android/">Android</a><span> / </span><a class="link-muted" href="/categories/Android/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="level-item">4 分钟读完 (大约647个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Drozer agent</h1><div class="content"><p>Drozer是一款针对Android系统的安全测试框架，它由console和server两部分组成，其中console运行在本地计算机上，Server安装在目标Android设备上来充当一个Server。</p>
+<span id="more"></span>
+
+<p>看了下，有点停更了的感觉，先安装使用了解一下。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><blockquote>
+<p>官网网址：<a target="_blank" rel="noopener" href="https://labs.reversec.com/tools/drozer">ReversecLabs&#x2F;drozer</a><br>官方GitHub地址：<a target="_blank" rel="noopener" href="https://github.com/ReversecLabs/drozer">ReversecLabs&#x2F;drozer: The Leading Security Assessment Framework for Android.</a></p>
+</blockquote>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><p>官方提供的安装方式我推荐第一种，用pipx安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install pipx </span><br><span class="line"># pipx 不是 pip 的替代品，而是专门用来装“Python 命令行工具”的隔离安装器。</span><br><span class="line"></span><br><span class="line">pipx install drozer</span><br></pre></td></tr></table></figure>
+<p>安装会疯狂报毒，问题不大。安装完成后注意配置环境变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\test\.local\bin\</span><br></pre></td></tr></table></figure>
+
+<h2 id="代理端"><a href="#代理端" class="headerlink" title="代理端"></a>代理端</h2><p>从官方仓库里找：<a target="_blank" rel="noopener" href="https://github.com/ReversecLabs/drozer-agent">ReversecLabs&#x2F;drozer-agent: The Android Agent for the Drozer Security Assessment Framework.</a><br>也可以用指令创建</p>
+<p>agent拖进去打开，然后adb创建端口映射</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb -s 127.0.0.1:16384 forward tcp:31415 tcp:31415</span><br></pre></td></tr></table></figure>
+
+<h1 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a>基础使用</h1><p>首先在安卓机安装agent端，打开软件，并且在右下角启动。<br>然后在控制端输入指令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drozer console connect</span><br><span class="line">或者</span><br><span class="line">drozer console connect --server 127.0.0.1:31415</span><br><span class="line">开了ssl</span><br><span class="line">drozer console connect --ssl</span><br><span class="line">加调试（看真错误）</span><br><span class="line">drozer console connect --debug</span><br></pre></td></tr></table></figure>
+
+<p>去官网扒了下一些用法</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>run MODULE</code></td>
+<td>执行一个 drozer 模块。</td>
+</tr>
+<tr>
+<td><code>list</code></td>
+<td>列出当前会话中所有可执行的 drozer 模块。会隐藏你没有足够权限运行的模块。</td>
+</tr>
+<tr>
+<td><code>shell</code></td>
+<td>在设备上启动一个交互式 Linux Shell，运行环境为 Agent 进程的上下文。</td>
+</tr>
+<tr>
+<td><code>cd</code></td>
+<td>将某个命名空间挂载为当前会话的根目录，避免反复输入模块的完整名称。</td>
+</tr>
+<tr>
+<td><code>clean</code></td>
+<td>删除 drozer 在 Android 设备上存储的临时文件。</td>
+</tr>
+<tr>
+<td><code>contributors</code></td>
+<td>显示为 drozer 框架及当前系统所用模块做出贡献的人员名单。</td>
+</tr>
+<tr>
+<td><code>echo</code></td>
+<td>向控制台输出文本。</td>
+</tr>
+<tr>
+<td><code>exit</code></td>
+<td>终止 drozer 会话。</td>
+</tr>
+<tr>
+<td><code>help</code></td>
+<td>显示某个特定命令或模块的帮助信息。</td>
+</tr>
+<tr>
+<td><code>load</code></td>
+<td>加载一个包含 drozer 命令的文件，并按顺序执行其中的命令。</td>
+</tr>
+<tr>
+<td><code>module</code></td>
+<td>从互联网查找并安装额外的 drozer 模块。</td>
+</tr>
+<tr>
+<td><code>permissions</code></td>
+<td>显示授予 drozer Agent 的权限列表。</td>
+</tr>
+<tr>
+<td><code>set</code></td>
+<td>将一个值存储到变量中，该变量会作为环境变量传递给 drozer 启动的任何 Linux Shell。</td>
+</tr>
+<tr>
+<td><code>unset</code></td>
+<td>移除 drozer 传递给其启动的任何 Linux Shell 的命名变量。</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">查找包名</span><br><span class="line">run app.package.list -f qq</span><br><span class="line">结果</span><br><span class="line">Attempting to run shell module</span><br><span class="line">com.tencent.android.qqdownloader (应用宝)</span><br><span class="line"></span><br><span class="line">检索包信息</span><br><span class="line">run app.package.info -a com.tencent.android.qqdownloader</span><br><span class="line"></span><br><span class="line">查找URI</span><br><span class="line">run scanner.provider.finduris -a com.tencent.android.qqdownloader</span><br><span class="line"></span><br><span class="line">SQL注入查询</span><br><span class="line">run scanner.provider.injection -a com.tencent.android.qqdownloader</span><br></pre></td></tr></table></figure></div><div class="article-licensing box"><div class="licensing-title"><p>Drozer agent</p><p><a href="https://winhahah.github.io/2026/10/26/Android/009Drozer agent/">https://winhahah.github.io/2026/10/26/Android/009Drozer agent/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>纹云</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2026-10-26</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2026-10-30</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E5%B7%A5%E5%85%B7/">工具</a><a class="link-muted mr-2" rel="tag" href="/tags/Android/">Android</a><a class="link-muted mr-2" rel="tag" href="/tags/AI/">AI</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2026/10/26/Android/011Android%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E5%8F%8A%E9%9D%A2%E5%85%B7%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"><i class="level-item fas fa-chevron-left" aria-hidden="true"></i><span class="level-item">Android抓包工具及面具安装使用</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2026/10/26/Android/008Magisk%E5%92%8CLSPosed/"><span class="level-item">Magisk和LSPosed</span><i class="level-item fas fa-chevron-right" aria-hidden="true"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/lulu.png" alt="纹云"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">纹云</p><p class="is-size-6 is-block">天灵地灵我灵</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>地球</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives/"><p class="title">15</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories/"><p class="title">6</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags/"><p class="title">12</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/winhahah" target="_blank" rel="me noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="GitHub" href="https://github.com/winhahah" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Android/"><span class="level-start"><span class="level-item">Android</span></span><span class="level-end"><span class="level-item tag">12</span></span></a><ul><li><a class="level is-mobile" href="/categories/Android/%E5%B7%A5%E5%85%B7/"><span class="level-start"><span class="level-item">工具</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E5%85%B6%E4%BB%96/"><span class="level-start"><span class="level-item">其他</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E5%85%B6%E4%BB%96/%E5%B7%A5%E5%85%B7/"><span class="level-start"><span class="level-item">工具</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/%E6%B5%8B%E8%AF%95/"><span class="level-start"><span class="level-item">测试</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E6%B5%8B%E8%AF%95/%E4%BA%8C%E7%BA%A7/"><span class="level-start"><span class="level-item">二级</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2026-10-30T11:45:17.882Z">2026-10-30</time></p><p class="title"><a href="/2026/10/30/012/"> </a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2026-10-28T05:06:00.000Z">2026-10-28</time></p><p class="title"><a href="/2026/10/28/Android/012Android%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B72/">Android抓包工具2</a></p><p class="categories"><a href="/categories/Android/">Android</a> / <a href="/categories/Android/%E5%B7%A5%E5%85%B7/">工具</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2026-10-26T08:15:00.000Z">2026-10-26</time></p><p class="title"><a href="/2026/10/26/Android/010Android%E8%B0%83%E8%AF%95%E6%8C%87%E4%BB%A4%E6%94%B6%E5%BD%95/">Drozer agent</a></p><p class="categories"><a href="/categories/Android/">Android</a> / <a href="/categories/Android/%E5%B7%A5%E5%85%B7/">工具</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2026-10-26T08:15:00.000Z">2026-10-26</time></p><p class="title"><a href="/2026/10/26/Android/011Android%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E5%8F%8A%E9%9D%A2%E5%85%B7%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/">Android抓包工具及面具安装使用</a></p><p class="categories"><a href="/categories/Android/">Android</a> / <a href="/categories/Android/%E5%B7%A5%E5%85%B7/">工具</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2026-10-26T07:15:00.000Z">2026-10-26</time></p><p class="title"><a href="/2026/10/26/Android/009Drozer%20agent/">Drozer agent</a></p><p class="categories"><a href="/categories/Android/">Android</a> / <a href="/categories/Android/%E5%B7%A5%E5%85%B7/">工具</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2026/10/"><span class="level-start"><span class="level-item">十月 2026</span></span><span class="level-end"><span class="level-item tag">15</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/AI/"><span class="tag">AI</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Android/"><span class="tag">Android</span><span class="tag">12</span></a></div><div class="control"><a class="tags has-addons" href="/tags/AndroidStudio/"><span class="tag">AndroidStudio</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Charles/"><span class="tag">Charles</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/LSPosed/"><span class="tag">LSPosed</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Magisk/"><span class="tag">Magisk</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Reqable/"><span class="tag">Reqable</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/adb/"><span class="tag">adb</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/frida/"><span class="tag">frida</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B7%A5%E5%85%B7/"><span class="tag">工具</span><span class="tag">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%BA%E5%88%B6/"><span class="tag">机制</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%A7%81%E6%9C%89%E6%96%87%E7%AB%A0/"><span class="tag">私有文章</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/butian.svg" alt="卜天" height="28"></a><p class="is-size-7"><span>&copy; 2026 纹云</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2026 纹云</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="CC-BY 4.0" href="https://creativecommons.org/licenses/by/4.0/" aria-label="CC-BY 4.0"><i class="fab fa-creative-commons-by" aria-hidden="true"></i></a></p></div></div></div></div></footer><script src="https://cdnjs.loli.net/ajax/libs/jquery/3.7.1/jquery.min.js"></script><script src="https://cdnjs.loli.net/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" defer></script><script>var IcarusThemeSettings = {"article":{"highlight":{"clipboard":true,"fold":"unfolded","fold_preview":0}},"i18n":{"copy":"复制","copied":"已复制！"}};</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js" onerror="document.documentElement.classList.remove(&#039;is-animating&#039;)"></script><button type="button" id="back-to-top" title="回到顶端" aria-label="回到顶端"><i class="fas fa-chevron-up" aria-hidden="true"></i></button><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdnjs.loli.net/ajax/libs/lightgallery/1.10.0/js/lightgallery-all.min.js" defer></script><script src="https://cdnjs.loli.net/ajax/libs/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script data-pjax src="/js/insight.js" defer></script><script data-pjax>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
