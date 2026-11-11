@@ -47,8 +47,8 @@
       }
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><div id="browser-notice" data-pjax></div><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/butian.svg" alt="卜天" height="28"></a></div><div class="navbar-menu"><button class="navbar-item navbar-toggle" type="button" title="菜单" aria-label="菜单" aria-expanded="false" aria-controls="navbar-main-menu"><i class="fas fa-bars" aria-hidden="true"></i></button><div class="navbar-start" id="navbar-main-menu"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/winhahah" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a><button class="navbar-item search" type="button" title="搜索" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></button></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2026-10-25T13:45:00.000Z" title="2026-10-25 21:45:00">2026-10-25</time>发表</span><span class="level-item"><time dateTime="2026-10-25T13:45:00.000Z" title="2026-10-25 21:45:00">2026-10-25</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android/">Android</a><span> / </span><a class="link-muted" href="/categories/Android/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="level-item">6 分钟读完 (大约926个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Android配置及基础使用</h1><div class="content"><p>配置过程中的一些注意点</p>
-<span id="more"></span>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><div id="browser-notice" data-pjax></div><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/butian.svg" alt="卜天" height="28"></a></div><div class="navbar-menu"><button class="navbar-item navbar-toggle" type="button" title="菜单" aria-label="菜单" aria-expanded="false" aria-controls="navbar-main-menu"><i class="fas fa-bars" aria-hidden="true"></i></button><div class="navbar-start" id="navbar-main-menu"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/winhahah" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a><button class="navbar-item search" type="button" title="搜索" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></button></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2026-10-25T13:45:00.000Z" title="2026-10-25 21:45:00">2026-10-25</time>发表</span><span class="level-item"><time dateTime="2026-10-25T13:45:00.000Z" title="2026-10-25 21:45:00">2026-10-25</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android/">Android</a><span> / </span><a class="link-muted" href="/categories/Android/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="level-item">4 分钟读完 (大约618个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Android配置及基础使用</h1><div class="content"><p>配置过程中的一些注意点</p>
+
 
 <p>普通安装，除了 SDK，还需要安装SDK Tools中的NDK，Cmake和Google USBDriver</p>
 <table>
@@ -62,12 +62,12 @@
 <tbody><tr>
 <td>SDK​</td>
 <td>开发框架</td>
-<td>写 Java&#x2F;Kotlin 代码时用的官方库和工具</td>
+<td>写 Java/Kotlin 代码时用的官方库和工具</td>
 </tr>
 <tr>
 <td>NDK​</td>
 <td>原生编译工具</td>
-<td>写 C&#x2F;C++ 代码时用的编译器和系统库</td>
+<td>写 C/C++ 代码时用的编译器和系统库</td>
 </tr>
 <tr>
 <td>CMake​</td>
@@ -81,23 +81,23 @@
 </tr>
 </tbody></table>
 <h1 id="连接mumu"><a href="#连接mumu" class="headerlink" title="连接mumu"></a>连接mumu</h1><p>mumu打开调试选项后，版本是Android15，端口是16384。<br>进入：D:\software\Android\SDK\platform-tools，里面有Android的adb，连接mumu</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 建议先重启 adb 服务</span><br><span class="line">adb kill-server</span><br><span class="line">adb start-server</span><br><span class="line"></span><br><span class="line"># 连接（端口换成你自己的）</span><br><span class="line">adb connect 127.0.0.1:16384</span><br><span class="line"></span><br><span class="line"># 查看设备</span><br><span class="line">adb devices</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
 <h1 id="配置-Gradle-Sync"><a href="#配置-Gradle-Sync" class="headerlink" title="配置 Gradle Sync"></a>配置 Gradle Sync</h1><p>项目开始跑的时候，会用Gradle构建项目，初次使用需要下载Gradle，下载速度会很慢，所以需要快速的换源，换源前记得删除已经下载的缓存，防止错乱</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\test\.gradle\wrapper\dists\gradle-9.6.0-bin</span><br></pre></td></tr></table></figure>
+
 
 <p>项目根目录 <code>gradle/wrapper/gradle-wrapper.properties</code><br>将</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distributionUrl=https\://services.gradle.org/distributions/gradle-9.6.0-bin.zip</span><br></pre></td></tr></table></figure>
+
 <p>换成</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distributionUrl=https\://mirrors.aliyun.com/gradle/gradle-9.6.0-bin.zip</span><br></pre></td></tr></table></figure>
+
 <p>如果这个下载源下载失败了，则可以用官方的下载源，然后配置下本地代理端口即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">systemProp.http.proxyHost=127.0.0.1  </span><br><span class="line">systemProp.http.proxyPort=10808  </span><br><span class="line">systemProp.https.proxyHost=127.0.0.1  </span><br><span class="line">systemProp.https.proxyPort=10808</span><br><span class="line"></span><br><span class="line"># 本机/模拟器通信不要走代理</span><br><span class="line">systemProp.http.nonProxyHosts=localhost|127.0.0.1|127.0.0.1:*</span><br><span class="line">systemProp.https.nonProxyHosts=localhost|127.0.0.1|127.0.0.1:*</span><br></pre></td></tr></table></figure>
+
 <p>我的代理是V2，所以是10808。配置代理后后，gradle默认所有网络请求走代理，需要对本机的请求做一个排除。</p>
 <p>然后将 Gradle 的包下载源改掉，在项目根目录的 settings.gradle.kts 内容也改一下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">pluginManagement &#123;  </span><br><span class="line">    repositories &#123;  </span><br><span class="line">        maven &#123; url = uri(&quot;https://maven.aliyun.com/repository/gradle-plugin&quot;) &#125;  // 阿里云镜像（优先）  </span><br><span class="line">        maven &#123; url = uri(&quot;https://maven.aliyun.com/repository/google&quot;) &#125;         // 阿里云镜像（优先）  </span><br><span class="line">        maven &#123; url = uri(&quot;https://maven.aliyun.com/repository/central&quot;) &#125;        // 阿里云镜像（优先）  </span><br><span class="line">        google &#123;  </span><br><span class="line">            content &#123;  </span><br><span class="line">                includeGroupByRegex(&quot;com\\.android.*&quot;)  </span><br><span class="line">                includeGroupByRegex(&quot;com\\.google.*&quot;)  </span><br><span class="line">                includeGroupByRegex(&quot;androidx.*&quot;)  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;                                                                         // 只从 Google 官方下载，这是原配置用来兜底  </span><br><span class="line">        mavenCentral()                                                            // 只从 Maven Central 下载，这是原配置用来兜底  </span><br><span class="line">        gradlePluginPortal()                                                      // 只从 Gradle 插件门户下载，这是原配置用来兜底  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">plugins &#123;  </span><br><span class="line">    id(&quot;org.gradle.toolchains.foojay-resolver-convention&quot;) version &quot;1.0.0&quot;  </span><br><span class="line">&#125;  </span><br><span class="line">dependencyResolutionManagement &#123;  </span><br><span class="line">    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)  </span><br><span class="line">    repositories &#123;  </span><br><span class="line">        maven &#123; url = uri(&quot;https://maven.aliyun.com/repository/public&quot;) &#125;   // 阿里云镜像（优先）  </span><br><span class="line">        maven &#123; url = uri(&quot;https://maven.aliyun.com/repository/google&quot;) &#125;   // 阿里云镜像（优先）  </span><br><span class="line">        maven &#123; url = uri(&quot;https://maven.aliyun.com/repository/central&quot;) &#125;  // 阿里云镜像（优先）  </span><br><span class="line">        google()                                                            // 这俩保留的原因同上  </span><br><span class="line">        mavenCentral()  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">rootProject.name = &quot;demo&quot;  // 自己的项目名</span><br><span class="line">include(&quot;:app&quot;)</span><br></pre></td></tr></table></figure>
+
 
 <p>一个项目跑起来需要的步骤如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sync（下载依赖） → Build（编译APK） → 连设备（MuMu） → Run（安装运行）</span><br></pre></td></tr></table></figure>
+
 
 <p>这里补充以下 gradle和maven的对比</p>
 <table>
@@ -109,13 +109,13 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>语法&#x2F;配置</td>
+<td>语法/配置</td>
 <td>纯 XML 配置（pom.xml），语法繁琐、灵活度低</td>
-<td>支持 Groovy&#x2F;Kotlin DSL，兼具声明式+命令式，简洁灵活</td>
+<td>支持 Groovy/Kotlin DSL，兼具声明式+命令式，简洁灵活</td>
 </tr>
 <tr>
 <td>构建速度</td>
-<td>较慢，无增量构建&#x2F;缓存，每次全量构建</td>
+<td>较慢，无增量构建/缓存，每次全量构建</td>
 <td>极快，支持增量构建、构建缓存、并行执行</td>
 </tr>
 <tr>
@@ -126,10 +126,10 @@
 <tr>
 <td>学习曲线</td>
 <td>平缓，XML 规则固定，新手易上手</td>
-<td>较陡，需了解 DSL 语法，进阶功能需学习 Groovy&#x2F;Kotlin</td>
+<td>较陡，需了解 DSL 语法，进阶功能需学习 Groovy/Kotlin</td>
 </tr>
 <tr>
-<td>生态&#x2F;插件</td>
+<td>生态/插件</td>
 <td>生态成熟，插件数量多且稳定</td>
 <td>兼容 Maven 生态，插件丰富且更新快</td>
 </tr>

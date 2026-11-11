@@ -47,36 +47,36 @@
       }
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><div id="browser-notice" data-pjax></div><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/butian.svg" alt="卜天" height="28"></a></div><div class="navbar-menu"><button class="navbar-item navbar-toggle" type="button" title="菜单" aria-label="菜单" aria-expanded="false" aria-controls="navbar-main-menu"><i class="fas fa-bars" aria-hidden="true"></i></button><div class="navbar-start" id="navbar-main-menu"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/winhahah" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a><button class="navbar-item search" type="button" title="搜索" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></button></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2026-10-25T16:00:00.000Z" title="2026-10-26 00:00:00">2026-10-26</time>发表</span><span class="level-item"><time dateTime="2026-10-25T16:00:00.000Z" title="2026-10-26 00:00:00">2026-10-26</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android/">Android</a><span> / </span><a class="link-muted" href="/categories/Android/%E6%9C%BA%E5%88%B6/">机制</a></span><span class="level-item">9 分钟读完 (大约1312个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">APK目录结构</h1><div class="content"><p>apk目录结构介绍</p>
-<span id="more"></span>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><div id="browser-notice" data-pjax></div><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/butian.svg" alt="卜天" height="28"></a></div><div class="navbar-menu"><button class="navbar-item navbar-toggle" type="button" title="菜单" aria-label="菜单" aria-expanded="false" aria-controls="navbar-main-menu"><i class="fas fa-bars" aria-hidden="true"></i></button><div class="navbar-start" id="navbar-main-menu"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/winhahah" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a><button class="navbar-item search" type="button" title="搜索" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></button></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2026-10-25T16:00:00.000Z" title="2026-10-26 00:00:00">2026-10-26</time>发表</span><span class="level-item"><time dateTime="2026-10-25T16:00:00.000Z" title="2026-10-26 00:00:00">2026-10-26</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android/">Android</a><span> / </span><a class="link-muted" href="/categories/Android/%E6%9C%BA%E5%88%B6/">机制</a></span><span class="level-item">7 分钟读完 (大约1008个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">APK目录结构</h1><div class="content"><p>apk目录结构介绍</p>
+
 
 <h1 id="APK"><a href="#APK" class="headerlink" title="APK"></a>APK</h1><p>apk本质上是一个压缩包，将后缀改成zip可以直接用解压软件打开。</p>
 <p>这里对腾讯的应用宝进行分析</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages|grep tencent</span><br><span class="line">adb shell pm path com.tencent.android.qqdownloader</span><br><span class="line">adb pull /data/app/~~5gelR1bNtbsD-kN4pzX4Jw==/com.tencent.android.qqdownloader-hzh4Zx7t09B6v2XhbDIUzQ==/base.apk D:\data\code\APK</span><br></pre></td></tr></table></figure>
+
 <p>将apk拉去到本地以后，改后缀为zip解压打开（注意，解压缩打开都是乱码，只有反编译才能看到除了assets文件夹外的内容），文件目录和功能如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">assets/                 # 应用自带原始资源（不参与 aapt 资源 ID 编译）</span><br><span class="line">lib/                    # 原生动态库（.so，按 ABI 分目录）</span><br><span class="line">META-INF/               # APK 签名相关元数据</span><br><span class="line">okhttp3/                # OkHttp 相关配置/资源（依赖库带出来的）</span><br><span class="line">res/                    # Android 资源目录（布局/drawable/字符串等）</span><br><span class="line">AndroidManifest.xml     # 应用清单（包名、权限、组件、SDK版本等）</span><br><span class="line">classes.dex             # 主 Dex（Dalvik/ART 可执行字节码）</span><br><span class="line">classes2.dex ...        # 多 Dex 拆分（方法数超 65536 后分包）</span><br><span class="line">jacoco-agent.properties # JaCoCo 代码覆盖率代理配置（调试/测试打包残留），不理解为啥存在在这里</span><br><span class="line">resources.arsc          # 编译后的资源索引表（资源 ID-&gt;具体值/路径）</span><br></pre></td></tr></table></figure>
+
 
 <p>通俗理解如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AndroidManifest.xml   -&gt; 告诉系统“我是谁、要什么、有哪些组件”</span><br><span class="line">classes*.dex          -&gt; 执行逻辑</span><br><span class="line">res/ + resources.arsc -&gt; 界面/字符串/图片等资源解析</span><br><span class="line">assets/               -&gt; 原样资源</span><br><span class="line">lib/                  -&gt; native .so</span><br><span class="line">META-INF/             -&gt; 签名校验</span><br></pre></td></tr></table></figure>
+
 
 <p>详细介绍下</p>
 <ol>
-<li>assets&#x2F;<ul>
+<li>assets/<ul>
 <li>应用打包时原样放入的“原始文件”</li>
 <li>不会生成 <code>R.id/...</code> 资源 ID</li>
-<li>运行时通过 <code>AssetManager</code> &#x2F; <code>getAssets().open(&quot;xxx&quot;)</code> 读取</li>
+<li>运行时通过 <code>AssetManager</code> / <code>getAssets().open("xxx")</code> 读取</li>
 <li>常见内容：<ul>
-<li>配置文件、JSON、离线地图、模型文件、字体、网页资源、加密密钥&#x2F;脚本等</li>
+<li>配置文件、JSON、离线地图、模型文件、字体、网页资源、加密密钥/脚本等</li>
 </ul>
 </li>
 <li>与 <code>res/</code> 区别：<code>res</code> 会被 aapt2 编译并分配资源 ID，<code>assets</code> 保持原样</li>
 </ul>
 </li>
-<li>lib&#x2F;<ul>
+<li>lib/<ul>
 <li><p>存放 <strong>Native 动态链接库 <code>.so</code></strong></p>
 </li>
 <li><p>通常按 CPU 架构分子目录，例如：</p>
-  <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lib/armeabi-v7a/</span><br><span class="line">lib/arm64-v8a/</span><br><span class="line">lib/x86/</span><br><span class="line">lib/x86_64/</span><br></pre></td></tr></table></figure>
+  
 </li>
 <li><p>通过 JNI 调用，比如音视频、加解密、网络加速、安全校验、游戏引擎等</p>
 </li>
@@ -86,12 +86,12 @@
 </li>
 </ul>
 </li>
-<li>META-INF&#x2F;<ul>
+<li>META-INF/<ul>
 <li>APK <strong>签名信息</strong>所在目录（APK 必须签名才能安装）</li>
 <li>常见文件：<ul>
-<li><code>MANIFEST.MF</code>：各文件摘要（SHA&#x2F;SHA256）</li>
+<li><code>MANIFEST.MF</code>：各文件摘要（SHA/SHA256）</li>
 <li><code>CERT.SF</code>：对 MANIFEST 的签名相关文件</li>
-<li><code>CERT.RSA</code> &#x2F; <code>CERT.DSA</code>：签名证书&#x2F;公钥信息</li>
+<li><code>CERT.RSA</code> / <code>CERT.DSA</code>：签名证书/公钥信息</li>
 </ul>
 </li>
 <li>用于：<ul>
@@ -100,32 +100,32 @@
 <li>判断“是否同签名”（覆盖安装、系统权限、共享 UID 等）</li>
 </ul>
 </li>
-<li>重打包&#x2F;改文件后签名会变，需重新签名</li>
+<li>重打包/改文件后签名会变，需重新签名</li>
 </ul>
 </li>
-<li>okhttp3&#x2F;<ul>
-<li>不是 Android 强制标准目录，通常是 **OkHttp（Square&#x2F;Android 常用网络库）**​ 打包带出的资源&#x2F;配置</li>
+<li>okhttp3/<ul>
+<li>不是 Android 强制标准目录，通常是 **OkHttp（Square/Android 常用网络库）**​ 打包带出的资源/配置</li>
 <li>可能包含：<ul>
-<li>内置证书&#x2F;配置</li>
+<li>内置证书/配置</li>
 <li>网络拦截器相关资源</li>
-<li>Kotlin&#x2F;Java 库资源（有些库会往根目录放东西）</li>
+<li>Kotlin/Java 库资源（有些库会往根目录放东西）</li>
 </ul>
 </li>
-<li>说明该 App 使用 OkHttp 做 HTTP&#x2F;HTTPS 请求（很常见）</li>
+<li>说明该 App 使用 OkHttp 做 HTTP/HTTPS 请求（很常见）</li>
 </ul>
 </li>
-<li>res&#x2F;<ul>
+<li>res/<ul>
 <li>Android 标准资源目录</li>
 <li>会被编译进资源表，通过 <code>R.xxx.xxx</code> 或 <code>Resources.getXXX()</code> 访问</li>
 <li>常见子目录：</li>
 </ul>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">res/layout/        # XML 布局</span><br><span class="line">res/drawable/      # 图片/矢量/选择器</span><br><span class="line">res/mipmap/        # 启动图标（按密度）</span><br><span class="line">res/values/        # strings/colors/dimens/styles/arrays</span><br><span class="line">res/anim/          # 动画</span><br><span class="line">res/raw/           # 类似 assets 但会进资源表</span><br><span class="line">res/xml/           # 配置类 XML</span><br></pre></td></tr></table></figure>
-<p> 不同后缀（如 <code>-hdpi/-xhdpi/-xxhdpi/-zh-rCN</code>）表示适配不同屏幕&#x2F;语言</p>
+ 
+<p> 不同后缀（如 <code>-hdpi/-xhdpi/-xxhdpi/-zh-rCN</code>）表示适配不同屏幕/语言</p>
 </li>
 <li>AndroidManifest.xml<ul>
 <li><strong>应用清单文件</strong>（核心）</li>
 <li>包含：<ul>
-<li>包名（如 <code>package=&quot;com.tencent.android.qqdownloader&quot;</code>）</li>
+<li>包名（如 <code>package="com.tencent.android.qqdownloader"</code>）</li>
 <li><code>application</code> 节点（入口、主题、允许备份、硬件加速等）</li>
 <li>四大组件：<ul>
 <li><code>activity</code></li>
@@ -136,7 +136,7 @@
 </li>
 <li>权限声明：<ul>
 <li><code>uses-permission</code>（要什么权限）</li>
-<li><code>uses-feature</code>（需要相机&#x2F;定位等特性）</li>
+<li><code>uses-feature</code>（需要相机/定位等特性）</li>
 </ul>
 </li>
 <li>SDK 版本：<ul>
@@ -148,32 +148,32 @@
 <li>安装位置、支持屏幕等</li>
 </ul>
 </li>
-<li>注意：APK 里通常是 <strong>二进制 XML（AXML）</strong>，不是直接可读文本；你这里显示用 Edge 打开，可能是反编译工具已转成文本&#x2F;或你用工具查看</li>
+<li>注意：APK 里通常是 <strong>二进制 XML（AXML）</strong>，不是直接可读文本；你这里显示用 Edge 打开，可能是反编译工具已转成文本/或你用工具查看</li>
 </ul>
 </li>
 <li>classes.dex</li>
-<li>classes2.dex &#x2F; classes3.dex &#x2F; classes4.dex &#x2F; classes5.dex<ul>
-<li><code>.dex</code> &#x3D; <strong>Dalvik&#x2F;ART 可执行字节码文件</strong></li>
-<li>由 Java&#x2F;Kotlin 源码经 <code>javac → d8/r8/dx</code> 转换而来</li>
+<li>classes2.dex / classes3.dex / classes4.dex / classes5.dex<ul>
+<li><code>.dex</code> = <strong>Dalvik/ART 可执行字节码文件</strong></li>
+<li>由 Java/Kotlin 源码经 <code>javac → d8/r8/dx</code> 转换而来</li>
 <li>App 逻辑基本都在这里：<ul>
 <li>页面逻辑</li>
 <li>网络请求</li>
 <li>业务规则</li>
 <li>加解密</li>
-<li>插件&#x2F;下载逻辑等</li>
+<li>插件/下载逻辑等</li>
 </ul>
 </li>
 <li>为什么有多个 dex：<ul>
 <li>Android 单个 Dex 方法引用上限 <strong>65536（64K）</strong></li>
 <li>超过就开启 <strong>Multidex</strong>，拆成 <code>classes.dex</code>、<code>classes2.dex</code>…</li>
-<li>大厂&#x2F;大型 App（如应用宝）很常见</li>
+<li>大厂/大型 App（如应用宝）很常见</li>
 </ul>
 </li>
 <li>分析工具：<ul>
-<li><code>jadx</code>（反编译成 Java&#x2F;Kotlin 近似代码）</li>
-<li><code>apktool</code>（反编译&#x2F;回编译资源与 smali）</li>
-<li><code>smali/baksmali</code>（看&#x2F;改底层字节码）</li>
-<li>Android Studio &#x2F; jd-gui 等</li>
+<li><code>jadx</code>（反编译成 Java/Kotlin 近似代码）</li>
+<li><code>apktool</code>（反编译/回编译资源与 smali）</li>
+<li><code>smali/baksmali</code>（看/改底层字节码）</li>
+<li>Android Studio / jd-gui 等</li>
 </ul>
 </li>
 </ul>
@@ -182,14 +182,14 @@
 <li>**JaCoCo（Java Code Coverage）**​ 代码覆盖率工具相关配置</li>
 <li>用于测试时统计“哪些代码被执行过”</li>
 <li>正常发布版一般不该带，常见是：<ul>
-<li>测试包&#x2F;内部构建</li>
+<li>测试包/内部构建</li>
 <li>开启覆盖率采集</li>
-<li>反编译&#x2F;解包看到残留</li>
+<li>反编译/解包看到残留</li>
 </ul>
 </li>
 <li>可能配置：<ul>
 <li>agent 输出路径</li>
-<li>包含&#x2F;排除类规则</li>
+<li>包含/排除类规则</li>
 <li>覆盖率 dump 方式</li>
 </ul>
 </li>
@@ -199,14 +199,14 @@
 <li><strong>编译后的资源索引表（二进制资源表）</strong></li>
 <li>作用：把代码里的资源 ID（如 <code>0x7f0...</code>）映射到：<ul>
 <li>字符串值</li>
-<li>布局&#x2F;图片路径</li>
-<li>主题&#x2F;样式</li>
-<li>多语言&#x2F;多密度对应资源</li>
+<li>布局/图片路径</li>
+<li>主题/样式</li>
+<li>多语言/多密度对应资源</li>
 </ul>
 </li>
 <li>由 <code>aapt/aapt2</code> 生成</li>
-<li>改资源后通常要重新生成&#x2F;通过 <code>apktool</code> 处理</li>
-<li>与 <code>res/</code> 配合理解：<br>  <code>res/</code> 是“资源源文件&#x2F;编译后片段”，<code>resources.arsc</code> 是“查表索引”</li>
+<li>改资源后通常要重新生成/通过 <code>apktool</code> 处理</li>
+<li>与 <code>res/</code> 配合理解：<br>  <code>res/</code> 是“资源源文件/编译后片段”，<code>resources.arsc</code> 是“查表索引”</li>
 </ul>
 </li>
 </ol>

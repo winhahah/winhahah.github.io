@@ -47,23 +47,23 @@
       }
       window.addEventListener('hashchange', switchTab, false);
   })();
-  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><div id="browser-notice" data-pjax></div><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/butian.svg" alt="卜天" height="28"></a></div><div class="navbar-menu"><button class="navbar-item navbar-toggle" type="button" title="菜单" aria-label="菜单" aria-expanded="false" aria-controls="navbar-main-menu"><i class="fas fa-bars" aria-hidden="true"></i></button><div class="navbar-start" id="navbar-main-menu"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/winhahah" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a><button class="navbar-item search" type="button" title="搜索" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></button></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2026-10-30T16:03:00.000Z" title="2026-10-31 00:03:00">2026-10-31</time>发表</span><span class="level-item"><time dateTime="2026-10-30T16:03:00.000Z" title="2026-10-31 00:03:00">2026-10-31</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android/">Android</a><span> / </span><a class="link-muted" href="/categories/Android/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="level-item">4 分钟读完 (大约563个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Andrid开发方式判断</h1><div class="content"><p>不同的开发方式有着不同的逆向方法了。</p>
-<span id="more"></span>
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head><body class="is-2-column"><div id="browser-notice" data-pjax></div><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/butian.svg" alt="卜天" height="28"></a></div><div class="navbar-menu"><button class="navbar-item navbar-toggle" type="button" title="菜单" aria-label="菜单" aria-expanded="false" aria-controls="navbar-main-menu"><i class="fas fa-bars" aria-hidden="true"></i></button><div class="navbar-start" id="navbar-main-menu"><a class="navbar-item" href="/">首页</a><a class="navbar-item" href="/archives">归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="GitHub" href="https://github.com/winhahah" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a><button class="navbar-item search" type="button" title="搜索" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></button></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2026-10-30T16:03:00.000Z" title="2026-10-31 00:03:00">2026-10-31</time>发表</span><span class="level-item"><time dateTime="2026-10-30T16:03:00.000Z" title="2026-10-31 00:03:00">2026-10-31</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Android/">Android</a><span> / </span><a class="link-muted" href="/categories/Android/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="level-item">3 分钟读完 (大约448个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">Andrid开发方式判断</h1><div class="content"><p>不同的开发方式有着不同的逆向方法了。</p>
+
 
 <p>原生方式开发的app，使用Java和C开发，加密用的是Java和C。H5的app，使用webview控件加载网页，加密用的是JS。原生逆向分析分析的是dex文件，如果是H5开发，可能就没有dex文件。这一点对逆向的影响很大，所以要区别一下。</p>
 <p>之前推荐使用的是：uiautomator，但是现在看了下这个不适应高版本了。可以使用adb进行dump</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 1. 导出当前界面控件树</span><br><span class="line">adb shell uiautomator dump /sdcard/ui.xml</span><br><span class="line"></span><br><span class="line"># 2. 拉到电脑</span><br><span class="line">adb pull /sdcard/ui.xml .</span><br><span class="line"></span><br><span class="line"># 3. 直接看（或丢进浏览器格式化）</span><br><span class="line">cat ui.xml</span><br><span class="line"></span><br><span class="line">另一种，边看边筛选</span><br><span class="line">adb shell uiautomator dump /dev/stdout | grep -i &quot;登录&quot;</span><br></pre></td></tr></table></figure>
+
 
 <p>dump下来后，在中间能看到如下的一些内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resource-id=&quot;com.xiaofenquan.benben:id/action_bar_root&quot;</span><br></pre></td></tr></table></figure>
+
 <p>表示这个大概率是Java程序，看着这个id的绑定方式。</p>
 <p>当然，可以用如下的方式不让你截图:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">禁止截图、录屏、投屏，隐藏后台略缩图，阻断自动化抓取</span><br><span class="line">getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);</span><br><span class="line"></span><br><span class="line">关闭防截屏保护（移除安全标志）。</span><br><span class="line">activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);</span><br></pre></td></tr></table></figure>
+
 
 <p>H5的在assets文件夹下可能有一些js文件</p>
 <h1 id="App架构类型："><a href="#App架构类型：" class="headerlink" title="App架构类型："></a>App架构类型：</h1><ol>
-<li>H5架构(Web App)<br> 基于Web技术(HTML&#x2F;CSS&#x2F;JS)开发<br> 运行在App内的WebView组件中<br> 本质上就是一个网页的封装</li>
-<li>Android原生架构(Native App)<br> 基于Android平台原生语言开发(Java&#x2F;Kotlin + Android SDK)<br> Android SDK(软件开发工具包)</li>
+<li>H5架构(Web App)<br> 基于Web技术(HTML/CSS/JS)开发<br> 运行在App内的WebView组件中<br> 本质上就是一个网页的封装</li>
+<li>Android原生架构(Native App)<br> 基于Android平台原生语言开发(Java/Kotlin + Android SDK)<br> Android SDK(软件开发工具包)</li>
 <li>Hybrid App(H5 + Android原生混编)<br> 在原生容器(如 WebView)里加载H5页面<br> 同时用原生代码实现关键功能(如 导航栏、支付)</li>
 <li>跨平台原生架构(如 Flutter、React Native)<br> 基于第三方框架(如 Flutter、React Native)进行开发<br> 编写一次代码<br> 可以同时在Android和iOS上运行</li>
 </ol>
@@ -71,7 +71,7 @@
 <thead>
 <tr>
 <th>架构类型</th>
-<th>开发语言&#x2F;技术</th>
+<th>开发语言/技术</th>
 <th>性能表现</th>
 <th>跨平台能力</th>
 <th>典型代表</th>
@@ -79,14 +79,14 @@
 </thead>
 <tbody><tr>
 <td>H5架构</td>
-<td>HTML&#x2F;CSS&#x2F;JS</td>
+<td>HTML/CSS/JS</td>
 <td>较低</td>
 <td>极强（WebView）</td>
 <td>营销活动页</td>
 </tr>
 <tr>
 <td>Android原生</td>
-<td>Java&#x2F;Kotlin</td>
+<td>Java/Kotlin</td>
 <td>极高</td>
 <td>无（仅Android）</td>
 <td>大型游戏</td>
@@ -96,11 +96,11 @@
 <td>H5 + 原生</td>
 <td>中等</td>
 <td>较强</td>
-<td>电商&#x2F;资讯App</td>
+<td>电商/资讯App</td>
 </tr>
 <tr>
 <td>跨平台原生</td>
-<td>Flutter&#x2F;RN</td>
+<td>Flutter/RN</td>
 <td>高（近原生）</td>
 <td>强（双端）</td>
 <td>多数商业App</td>
